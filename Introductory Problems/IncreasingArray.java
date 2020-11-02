@@ -11,15 +11,17 @@ public class IncreasingArray {
         for (int i = 0; i < size; i++) {
             num[i] = Long.parseLong(sc.next());
         }
-        
-        for (int i = 0; i < size - 1; i++) {
-            num[i] = num[i+1] - num[i];
-        }
+
+        long limit = num[0];
         BigInteger ans = new BigInteger(String.valueOf(0));
-        for (int i = 0; i < size - 1; i++) {
-            if (num[i] > 0)
-                ans = ans.add(BigInteger.valueOf(num[i]));
+        for (int i = 1; i < size; i++) {
+            if (num[i] < limit){
+                ans = ans.add(BigInteger.valueOf(limit - num[i]));
+            }
+            else{
+                limit = num[i];
+            }
         }
-        System.out.println(ans.intValue());
+        System.out.println(ans);
     }
 }
